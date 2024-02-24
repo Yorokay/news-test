@@ -1,7 +1,7 @@
 import './news.css';
 import { NewsArticle } from '../../../types/news-interfaces';
 
-function getNotNullElement<T extends Element | null>(news: T): NonNullable<T> & HTMLElement {
+export function getNotNullElement<T extends Element | null>(news: T): NonNullable<T> & HTMLElement {
     if (news === null || !(news instanceof HTMLElement)) {
         throw new Error('No news found');
     }
@@ -12,11 +12,7 @@ class News {
     draw(data: NewsArticle[]) {
         const news: NewsArticle[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
         const fragment: DocumentFragment = document.createDocumentFragment();
-        const newsItemTemp: HTMLTemplateElement | null = document.querySelector('#newsItemTemp');
-
-        if (newsItemTemp === null) {
-            throw new Error('No news found');
-        }
+        const newsItemTemp: HTMLTemplateElement = getNotNullElement(document.querySelector('#newsItemTemp'));
 
         news.forEach((item: NewsArticle, idx: number) => {
             const newsClone: Element = newsItemTemp.content.cloneNode(true) as Element;

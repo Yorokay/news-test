@@ -1,4 +1,4 @@
-interface SourcesSource {
+export interface SourcesSource {
     id: string;
     name: string;
     description: string;
