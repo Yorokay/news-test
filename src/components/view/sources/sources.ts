@@ -3,7 +3,7 @@ import { SourcesSource } from '../../../types/sources-interfaces';
 import { getNotNullElement } from '../news/news';
 
 class Sources {
-    draw(data: SourcesSource[]) {
+    public draw(data: SourcesSource[]) {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement = getNotNullElement(document.querySelector('#sourceItemTemp'));
 
