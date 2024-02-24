@@ -1,10 +1,10 @@
-interface HeadlinesSource {
+interface NewsSource {
     id: null | string;
     name: string;
 }
 
-interface HeadlinesArticle {
-    source: HeadlinesSource;
+export interface NewsArticle {
+    source: NewsSource;
     author: string;
     title: string;
     description: string;
@@ -14,8 +14,8 @@ interface HeadlinesArticle {
     content: string;
 }
 
-export interface HeadlinesResponse {
+export interface NewsResponse {
     status: 'ok' | 'error';
     totalResults: number;
-    articles: HeadlinesArticle[];
+    articles: NewsArticle[];
 }
