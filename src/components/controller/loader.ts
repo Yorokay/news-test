@@ -1,15 +1,5 @@
-interface LoaderInfo {
-    endpoint: string;
-    options: Record<string, never> | { sources: string };
-    method: string;
-    callback<T>(data?: T): void;
-}
-
-interface UrlOptionsInfo {
-    [index: string]: string | undefined;
-    sources?: string;
-    apiKey: string;
-}
+import { LoaderInfo } from '../../types/loader-interfaces';
+import { UrlOptionsInfo } from '../../types/loader-interfaces';
 
 enum StatusCodes {
     Code401 = 401,
