@@ -1,13 +1,13 @@
 import './sources.css';
-import { SourcesSource } from '../../../types/sources-interfaces';
+import { SourcesInfo } from '../../../types/sources-interfaces';
 import { getNotNullElement } from '../news/news';
 
 class Sources {
-    public draw(data: SourcesSource[]) {
+    public draw(data: SourcesInfo[]): void {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLTemplateElement = getNotNullElement(document.querySelector('#sourceItemTemp'));
 
-        data.forEach((item: SourcesSource) => {
+        data.forEach((item: SourcesInfo) => {
             const sourceClone: Element = sourceItemTemp.content.cloneNode(true) as Element;
 
             getNotNullElement(sourceClone.querySelector('.source__item-name')).textContent = item.name;

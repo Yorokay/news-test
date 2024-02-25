@@ -1,4 +1,4 @@
-export interface SourcesSource {
+export interface SourcesInfo {
     id: string;
     name: string;
     description: string;
@@ -10,5 +10,5 @@ export interface SourcesSource {
 
 export interface SourcesResponse {
     status: 'ok' | 'error';
-    sources: SourcesSource[];
+    sources: SourcesInfo[];
 }

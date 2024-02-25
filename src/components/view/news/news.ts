@@ -9,7 +9,7 @@ export function getNotNullElement<T extends Element | null>(news: T): NonNullabl
 }
 
 class News {
-    public draw(data: NewsArticle[]) {
+    public draw(data: NewsArticle[]): void {
         const news: NewsArticle[] = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
         const fragment: DocumentFragment = document.createDocumentFragment();
         const newsItemTemp: HTMLTemplateElement = getNotNullElement(document.querySelector('#newsItemTemp'));
