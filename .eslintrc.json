@@ -16,6 +16,7 @@
         "browser": true,
         "node": true
     },
+    "ignorePatterns": ["webpack.config.js"],
     "rules": {
         "@typescript-eslint/no-explicit-any": 2,
         "no-debugger": "off",

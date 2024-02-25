@@ -1,5 +1,7 @@
 import { LoaderInfo } from '../../types/loader-interfaces';
 import { UrlOptionsInfo } from '../../types/loader-interfaces';
+import { NewsResponse } from '../../types/news-interfaces';
+import { SourcesResponse } from '../../types/sources-interfaces';
 
 enum StatusCodes {
     Code401 = 401,
@@ -7,10 +9,10 @@ enum StatusCodes {
 }
 
 class Loader {
-    private _baseLink: string;
-    private _options: { apiKey: string };
+    private _baseLink?: string;
+    private _options: { apiKey?: string };
 
-    constructor(baseLink: string, options: { apiKey: string }) {
+    constructor(options: { apiKey?: string }, baseLink?: string) {
         this._baseLink = baseLink;
         this._options = options;
     }
@@ -21,7 +23,7 @@ class Loader {
         callback = () => {
             console.error('No callback for GET response');
         },
-    }: Pick<LoaderInfo, 'endpoint' | 'options' | 'callback'>): void {
+    }: LoaderInfo): void {
         this.load({ method: 'GET', endpoint, callback, options });
     }
 
@@ -37,9 +39,9 @@ class Loader {
 
     private makeUrl({ options, endpoint }: Pick<LoaderInfo, 'options' | 'endpoint'>): string {
         const urlOptions: UrlOptionsInfo = { ...this._options, ...options };
-        let url = `${this._baseLink}${endpoint}?`;
+        let url: string = `${this._baseLink}${endpoint}?`;
 
-        Object.keys(urlOptions).forEach((key) => {
+        Object.keys(urlOptions).forEach((key: string) => {
             url += `${key}=${urlOptions[key]}&`;
         });
 
@@ -49,9 +51,9 @@ class Loader {
     private load({ method, endpoint, callback, options = {} }: LoaderInfo): void {
         fetch(this.makeUrl({ options, endpoint }), { method })
             .then(this.errorHandler)
-            .then((res) => res.json())
-            .then((data) => callback(data))
-            .catch((err) => console.error(err));
+            .then((res: Response) => res.json())
+            .then((data: NewsResponse | SourcesResponse) => callback(data))
+            .catch((err: Error) => console.error(err));
     }
 }
 
