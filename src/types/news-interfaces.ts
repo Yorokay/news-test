@@ -14,8 +14,13 @@ export interface NewsArticle {
     content: string;
 }
 
+enum Statuses {
+    Ok = 'ok',
+    Error = 'error',
+}
+
 export interface NewsResponse {
-    status: 'ok' | 'error';
+    status: Statuses.Ok & Statuses.Error;
     totalResults: number;
     articles: NewsArticle[];
 }

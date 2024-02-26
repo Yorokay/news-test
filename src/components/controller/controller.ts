@@ -1,22 +1,22 @@
 import AppLoader from './appLoader';
 import { LoaderInfo } from '../../types/loader-interfaces';
-import { getNotNullElement } from '../view/news/news';
+import { getNotNullHTMLElement } from '../../types/HTMLElement-function';
 
 class AppController extends AppLoader {
-    getSources({ callback }: Pick<LoaderInfo, 'callback'>) {
+    public getSources({ callback }: Pick<LoaderInfo, 'callback'>) {
         super.getResp({
             endpoint: 'sources',
             callback,
         });
     }
 
-    getNews(e: Event, { callback }: Pick<LoaderInfo, 'callback'>) {
-        let target: HTMLElement = getNotNullElement(e.target);
-        const targetContainer: HTMLElement = getNotNullElement(e.currentTarget);
+    public getNews(e: Event, { callback }: Pick<LoaderInfo, 'callback'>) {
+        let target: HTMLElement = getNotNullHTMLElement(e.target);
+        const targetContainer: HTMLElement = getNotNullHTMLElement(e.currentTarget);
 
         while (target !== targetContainer) {
             if (target.classList.contains('source__item')) {
-                const sourceId: string = getNotNullElement(target.getAttribute('data-source-id'));
+                const sourceId: string = getNotNullHTMLElement(target.getAttribute('data-source-id'));
                 if (targetContainer.getAttribute('data-source') !== sourceId) {
                     targetContainer.setAttribute('data-source', sourceId);
                     super.getResp({
@@ -29,7 +29,7 @@ class AppController extends AppLoader {
                 }
                 return;
             }
-            target = getNotNullElement(target.parentNode);
+            target = getNotNullHTMLElement(target.parentNode);
         }
     }
 }
