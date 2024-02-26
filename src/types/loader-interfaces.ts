@@ -1,11 +1,11 @@
-// import { NewsResponse } from './news-interfaces';
-// import { SourcesResponse } from './sources-interfaces';
+import { NewsResponse } from './news-interfaces';
+import { SourcesResponse } from './sources-interfaces';
 
 export interface LoaderInfo {
     endpoint: string;
     options?: Record<string, never> | { sources: string };
     method?: string;
-    callback<T>(data?: T): void;
+    callback<T extends NewsResponse & SourcesResponse>(data: T): void;
 }
 
 export interface UrlOptionsInfo {

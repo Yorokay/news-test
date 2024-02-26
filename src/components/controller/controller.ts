@@ -10,7 +10,7 @@ class AppController extends AppLoader {
         });
     }
 
-    getTarget(e: Event, { callback }: Pick<LoaderInfo, 'callback'>) {
+    getNews(e: Event, { callback }: Pick<LoaderInfo, 'callback'>) {
         let target: HTMLElement = getNotNullElement(e.target);
         const targetContainer: HTMLElement = getNotNullElement(e.currentTarget);
 

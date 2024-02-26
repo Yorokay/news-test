@@ -52,7 +52,7 @@ class Loader {
         fetch(this.makeUrl({ options, endpoint }), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())
-            .then((data: NewsResponse | SourcesResponse) => callback(data))
+            .then((data: NewsResponse & SourcesResponse) => callback(data))
             .catch((err: Error) => console.error(err));
     }
 }
