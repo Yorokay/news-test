@@ -1,7 +1,9 @@
 import './news.css';
 import { NewsArticle } from '../../../types/news-interfaces';
 
-export function getNotNullElement<T extends Element | null>(news: T): NonNullable<T> & HTMLElement {
+export function getNotNullElement<T extends Element | null | EventTarget | string>(
+    news: T
+): NonNullable<T> & HTMLElement {
     if (news === null || !(news instanceof HTMLElement)) {
         throw new Error('No news found');
     }
